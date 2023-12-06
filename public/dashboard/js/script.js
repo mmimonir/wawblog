@@ -33,3 +33,7 @@ $(".waw-dropdown-container").on("click", function () {
 //     .children("a")
 //     .children(".waw-menu-item-right-icon")
 //     .toggleClass("fa-chevron-up fa-chevron-down");
+
+$(".profile-section").on("click", function () {
+    $(".profile-dropdown").slideToggle();
+});
