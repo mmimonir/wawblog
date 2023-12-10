@@ -9,11 +9,11 @@ class DashboardController extends Controller
     final public function index()
     {
         $cms_content = [
-            'module_name' => 'Dashboard',
-            'module_route' => 'dashboard',
+            'module_name' => 'Admin',
+            'module_route' => route('admin'),
             'sub_module_name' => 'Overview',
-            'button_type' => 'create',
-            'button_route' => 'dashboard',
+            // 'button_type' => 'create',
+            // 'button_route' => 'dashboard',
         ];
         return view('dashboard.index', compact('cms_content'));
     }

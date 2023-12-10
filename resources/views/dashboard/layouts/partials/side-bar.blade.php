@@ -1,6 +1,6 @@
 <div class="col-md-2 side-bar">
     <div class="logo">
-        <img src="{{ 'image/asset/logo.png' }}" class="img-thumbnail" alt="logo" />
+        <img src="{{ asset('image/asset/logo.png') }}" class="img-thumbnail" alt="logo" />
     </div>
     <ul class="waw-menu">
         <li class="waw-menu-item">

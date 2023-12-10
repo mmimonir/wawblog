@@ -169,3 +169,19 @@ address {
     color: var(--dark-cyan);
     text-decoration: none;
 }
+legend {
+    margin-bottom: 0 !important;
+    padding: 0 22px !important;
+    width: auto !important;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--dark-cyan);
+    font-weight: 300;
+    float: none !important;
+}
+fieldset {
+    border: 1px solid rgba(0, 139, 139, 0.5);
+    padding: 0 22px 22px 22px;
+    border-radius: 16px;
+    margin-top: 16px;
+}
