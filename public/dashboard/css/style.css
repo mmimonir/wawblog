@@ -18,6 +18,7 @@ h5,
 h6,
 ul,
 li,
+ol,
 address {
     margin: 0;
     padding: 0;
@@ -157,4 +158,14 @@ address {
 }
 .cursor-pointer {
     cursor: pointer;
+}
+.custom-breadcumb {
+    margin-top: 55px;
+    padding: 10px;
+    background: #dedede;
+    border-radius: 5px;
+}
+.custom-breadcumb a {
+    color: var(--dark-cyan);
+    text-decoration: none;
 }
