@@ -185,3 +185,14 @@ fieldset {
     border-radius: 16px;
     margin-top: 16px;
 }
+.custom-input-group {
+    position: relative;
+    margin-bottom: 16px;
+}
+.validation-error {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: red;
+    font-size: 12px;
+}

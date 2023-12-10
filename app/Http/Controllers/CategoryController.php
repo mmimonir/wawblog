@@ -28,7 +28,8 @@ class CategoryController extends Controller
             'button_type' => 'list',
             'button_route' => route('category.index'),
         ];
-        return view('dashboard.modules.category.create', compact('cms_content'));
+        $categories = (new Category())->get_category_assoc();
+        return view('dashboard.modules.category.create', compact('cms_content', 'categories'));
     }
 
     /**

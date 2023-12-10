@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('description')->nullable();
+            $table->string('image')->nullable();
+            $table->tinyInteger('status')->nullable()->comment('1 = Active, 2 = Inactive');
             $table->timestamps();
         });
     }
