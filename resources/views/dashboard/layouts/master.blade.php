@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row">
             @include('dashboard.layouts.partials.side-bar')
-            <div class="col-md-10 px-0">
+            <div class="col-md-10 px-0 offset-2">
                 @include('dashboard.layouts.partials.top-bar')
                 <div class="p-3">
                     @include('dashboard.layouts.partials.breadcumb')

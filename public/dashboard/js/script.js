@@ -37,3 +37,13 @@ $(".waw-dropdown-container").on("click", function () {
 $(".profile-section").on("click", function () {
     $(".profile-dropdown").slideToggle();
 });
+
+$(".image_upload_icon").on("click", function () {
+    $(this).siblings(".image_upload_input").trigger("click");
+});
+$(".image_upload_input").on("change", function (e) {
+    let image = e.target.files[0];
+    $(this)
+        .siblings(".image_upload_bg")
+        .attr("src", URL.createObjectURL(image));
+});

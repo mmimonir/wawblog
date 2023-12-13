@@ -27,10 +27,13 @@ address {
 .top-bar,
 .side-bar {
     background-color: var(--background);
+    z-index: 1;
 }
 
 .side-bar {
     height: 100vh;
+    width: 16.66%;
+    position: fixed;
 }
 
 .logo {
@@ -195,4 +198,39 @@ fieldset {
     left: 0;
     color: red;
     font-size: 12px;
+}
+.image-upload-container {
+    width: 200px;
+    height: 150px;
+    border: 3px solid var(--dark-cyan);
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+.image-upload-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.image-upload-container .overly {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-cyan);
+    opacity: 0.5;
+    left: 0;
+    top: 0;
+}
+.image-upload-container .fa-camera {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 30px;
+    text-shadow: 0px 0px 10px black;
+    transition: 0.3s all ease-in-out;
+}
+.image-upload-container .fa-camera:hover {
+    color: silver;
 }
