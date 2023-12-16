@@ -27,6 +27,7 @@ class StoreCategoryRequest extends FormRequest
             'status' => ['required', 'numeric', 'in:1,2'],
             'meta_title' => ['required', 'string', 'max:255'],
             'meta_description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
             'meta_keywords' => ['required', 'string', 'max:255'],
             'photo' => ['required', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             'og_image' => ['required', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],

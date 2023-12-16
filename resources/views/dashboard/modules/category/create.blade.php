@@ -55,7 +55,9 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <x-image-upload :label="'Upload Image'" :name="'photo'" />
+                    <div class="custom-input-group">
+                        <x-image-upload :label="'Upload Image'" :name="'photo'" />
+                    </div>
                 </div>
             </div>
         </fieldset>

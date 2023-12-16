@@ -28,6 +28,8 @@
         <x-validation-error :error="$errors->first('meta_description')" />
     </div>
     <div class="col-md-6">
-        <x-image-upload :label="'Upload OG Image'" :name="'og_image'" />
+        <div class="custom-input-group">
+            <x-image-upload :label="'Upload OG Image'" :name="'og_image'" />
+        </div>
     </div>
 </fieldset>
