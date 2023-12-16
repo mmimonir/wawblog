@@ -14,7 +14,6 @@
                         !!}
                         <x-validation-error :error="$errors->first('name')" />
                     </div>
-                    <div class="col-md-6"></div>
                 </div>
                 <div class="col-md-6">
                     <div class="custom-input-group">
@@ -24,7 +23,6 @@
                         !!}
                         <x-validation-error :error="$errors->first('name')" />
                     </div>
-                    <div class="col-md-6"></div>
                 </div>
                 <div class="col-md-6">
                     <div class="custom-input-group">
@@ -35,7 +33,6 @@
                         !!}
                         <x-validation-error :error="$errors->first('status')" />
                     </div>
-                    <div class="col-md-6"></div>
                 </div>
                 <div class="col-md-6">
                     <div class="custom-input-group">
@@ -46,7 +43,6 @@
                         !!}
                         <x-validation-error :error="$errors->first('parent_id')" />
                     </div>
-                    <div class="col-md-6"></div>
                 </div>
                 <div class="col-md-12">
                     <div class="custom-input-group">
