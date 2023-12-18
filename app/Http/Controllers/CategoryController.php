@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Throwable;
 use App\Models\Category;
+use Intervention\Image\Facades\Image;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
-use Throwable;
 
 class CategoryController extends Controller
 {
@@ -38,14 +39,11 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        // dd($request->all());
-        // try {
-        //     $category = (new Category())->storeCategory($request);
-        // } catch (Throwable $throwable) {
-        //     return back()->with('error', $throwable->getMessage());
-        // }
-        $category = (new Category())->storeCategory($request);
-        dd($category);
+        try {
+            $category = (new Category())->storeCategory($request);
+        } catch (Throwable $throwable) {
+            return back()->with('error', $throwable->getMessage());
+        }
     }
 
     /**

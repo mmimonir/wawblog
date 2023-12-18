@@ -6,7 +6,6 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Manager\Utility\Utility;
 use App\Manager\Image\ImageManager;
-use Intervention\Image\Facades\Image;
 use App\Models\Trait\CreatedUpdatedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -47,7 +46,8 @@ class Category extends Model
 
     public function prepareData(Request $request)
     {
-        // dd($request->hasFile('photo'));
+        $image_file = $request->file('photo');
+        $image = $image_file->getPathname();
         return [
             'name' => $request->input('name'),
             'status' => $request->input('status'),
@@ -55,7 +55,7 @@ class Category extends Model
             'slug' => Str::slug($request->input('slug')),
             'description' => $request->input('description'),
             'image' => (new ImageManager())
-                ->file($request->file('photo'))
+                ->file($image)
                 ->name(Utility::prepare_name($request->input('name')))
                 ->path(self::IMAGE_UPLOAD_PATH)
                 ->height(self::IMAGE_HEIGHT)
