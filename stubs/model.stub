@@ -1,0 +1,41 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Models\Traits\CreatedUpdatedBy;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class {{ class }} extends Model
+{
+    use HasFactory, CreatedUpdatedBy;
+
+    protected $guarded = [];
+
+    public const STATUS_ACTIVE = 1;
+    public const STATUS_INACTIVE = 2;
+    public const STATUS_LIST = [
+        self::STATUS_ACTIVE => 'Active',
+        self::STATUS_INACTIVE => 'Inactive',
+    ];
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    final public function created_by(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by_id');
+    }
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    final public function updated_by(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by_id');
+    }
+}

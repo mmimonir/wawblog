@@ -39,11 +39,13 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         // dd($request->all());
-        try {
-            $category = (new Category())->storeCategory($request);
-        } catch (Throwable $throwable) {
-            return back()->with('error', $throwable->getMessage());
-        }
+        // try {
+        //     $category = (new Category())->storeCategory($request);
+        // } catch (Throwable $throwable) {
+        //     return back()->with('error', $throwable->getMessage());
+        // }
+        $category = (new Category())->storeCategory($request);
+        dd($category);
     }
 
     /**
