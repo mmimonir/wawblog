@@ -1,3 +1,10 @@
+const tooltipTriggerList = document.querySelectorAll(
+    '[data-bs-toggle="tooltip"]'
+);
+const tooltipList = [...tooltipTriggerList].map(
+    (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+);
+
 $(".waw-dropdown-container").on("click", function () {
     let display = $(this).children(".waw-dropdown").css("display");
     if (display == "none") {

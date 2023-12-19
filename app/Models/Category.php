@@ -9,6 +9,7 @@ use App\Manager\Image\ImageManager;
 use App\Models\Trait\CreatedUpdatedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -32,6 +33,11 @@ class Category extends Model
     public function scopeActive(Builder $builder)
     {
         return $builder->where('status', self::STATUS_ACTIVE);
+    }
+
+    public function get_category_list()
+    {
+        return self::query()->paginate(10);
     }
 
     public function get_category_assoc()
@@ -78,5 +84,13 @@ class Category extends Model
     final public function updated_by(): BelongsTo
     {
         return $this->belongsTo(User::class, 'updated_by_id');
+    }
+    /**
+     *
+     * @return MorphOne
+     */
+    final public function seo(): MorphOne
+    {
+        return $this->morphOne(Seo::class, 'seoable');
     }
 }

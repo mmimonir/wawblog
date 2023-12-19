@@ -234,3 +234,12 @@ fieldset {
 .image-upload-container .fa-camera:hover {
     color: silver;
 }
+table th,
+td {
+    vertical-align: middle;
+}
+.table-image {
+    width: 50px;
+    border: 1px solid silver;
+    border-radius: 5px;
+}

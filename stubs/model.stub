@@ -2,7 +2,7 @@
 
 namespace {{ namespace }};
 
-use App\Models\Traits\CreatedUpdatedBy;
+use App\Models\Trait\CreatedUpdatedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;

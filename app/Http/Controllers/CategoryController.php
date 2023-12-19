@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Seo;
 use Throwable;
 use App\Models\Category;
 use Intervention\Image\Facades\Image;
@@ -15,7 +16,18 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $cms_content = [
+            'module_name' => 'Category',
+            'module_route' => route('category.index'),
+            'sub_module_name' => 'List',
+            'button_type' => 'create',
+            'button_route' => route('category.create'),
+        ];
+        $categories = (new Category())->get_category_list();
+        return view(
+            'dashboard.modules.category.index',
+            compact('cms_content', 'categories')
+        );
     }
 
     /**
@@ -41,8 +53,8 @@ class CategoryController extends Controller
     {
         try {
             $category = (new Category())->storeCategory($request);
+            $seo = (new Seo())->storeSeo($request, $category);
         } catch (Throwable $throwable) {
-            return back()->with('error', $throwable->getMessage());
         }
     }
 
