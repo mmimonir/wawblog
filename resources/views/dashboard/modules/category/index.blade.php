@@ -6,12 +6,16 @@
         <tr>
             <th>Sl</th>
             <th>Name
-                <x-tool-tip title="'Top one is category name and bottom one is category slug'" />
+                <x-tool-tip :title="'Top one is category name and bottom one is category slug'" />
             </th>
             <th>Parent</th>
             <th>Status</th>
-            <th>Date Time</th>
-            <th>Action By</th>
+            <th>Date Time
+                <x-tool-tip :title="'Top one is created date and bellow one is updated date'" />
+            </th>
+            <th>Action By
+                <x-tool-tip :title="'Top one is created by and bellow one is updated by'" />
+            </th>
             <th>Action</th>
         </tr>
     </thead>
@@ -32,23 +36,28 @@
                         <p class="text-success">{{ $category->slug }}</p>
                     </div>
                 </div>
-
-
-
             </td>
-            <td>Parent</td>
-            <td>{{ $category->status }}</td>
-            <td>
-                <p>{{ $category->created_at }}</p>
-                <p>{{ $category->created_at != $category->updated_at ? $category->updated_at->toDayDateTimeString() :
-                    'Not Updated Yet'
-                    }}</p>
+            <td>{{ $category->parent?->name }}</td>
+            <td class="text-center">
+                @if ($category->status == \App\Models\Category::STATUS_ACTIVE)
+                <x-active />
+                @else
+                <x-inactive />
+                @endif
             </td>
             <td>
-                <p>{{ $category->created_by?->name }}</p>
-                <p>{{ $category->updated_by?->name }}</p>
+                <x-date-time :created="$category->created_at" :updated="$category->updated_at" />
             </td>
-            <td>Action</td>
+            <td>
+                <x-action-by :created="$category->created_by?->name" :updated="$category->updated_by?->name" />
+            </td>
+            <td>
+                <div class="d-flex">
+                    <x-action-view :route="route('category.show', $category->id)" />
+                    <x-action-edit class="mx-1" :route="route('category.edit', $category->id)" />
+                    <x-action-delete :route="route('category.destroy', $category->id)" />
+                </div>
+            </td>
         </tr>
         @empty
         <tr>

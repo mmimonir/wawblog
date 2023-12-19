@@ -37,7 +37,7 @@ class Category extends Model
 
     public function get_category_list()
     {
-        return self::query()->paginate(10);
+        return self::query()->with('parent')->paginate(10);
     }
 
     public function get_category_assoc()
@@ -92,5 +92,10 @@ class Category extends Model
     final public function seo(): MorphOne
     {
         return $this->morphOne(Seo::class, 'seoable');
+    }
+
+    final public function parent(): BelongsTo
+    {
+        return $this->belongsTo(__CLASS__, 'parent_id');
     }
 }
