@@ -10,11 +10,11 @@
             </th>
             <th>Parent</th>
             <th>Status</th>
-            <th>Date Time
-                <x-tool-tip :title="'Top one is created date and bellow one is updated date'" />
-            </th>
             <th>Action By
                 <x-tool-tip :title="'Top one is created by and bellow one is updated by'" />
+            </th>
+            <th>Date Time
+                <x-tool-tip :title="'Top one is created date and bellow one is updated date'" />
             </th>
             <th>Action</th>
         </tr>
@@ -46,10 +46,10 @@
                 @endif
             </td>
             <td>
-                <x-date-time :created="$category->created_at" :updated="$category->updated_at" />
+                <x-action-by :created="$category->created_by?->name" :updated="$category->updated_by?->name" />
             </td>
             <td>
-                <x-action-by :created="$category->created_by?->name" :updated="$category->updated_by?->name" />
+                <x-date-time :created="$category->created_at" :updated="$category->updated_at" />
             </td>
             <td>
                 <div class="d-flex">

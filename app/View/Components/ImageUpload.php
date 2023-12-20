@@ -10,13 +10,15 @@ class ImageUpload extends Component
 {
     public string $label;
     public string $name;
+    public string $src;
     /**
      * Create a new component instance.
      */
-    public function __construct(string $label, string $name)
+    public function __construct(string $label, string $name, string $src)
     {
         $this->label = $label;
         $this->name = $name;
+        $this->src = $src;
     }
 
     /**

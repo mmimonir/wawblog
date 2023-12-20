@@ -11,7 +11,7 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:255', 'unique:categories,name,' . $this->category->id],
+            'slug' => ['required', 'string', 'max:255', 'unique:categories,slug,' . $this->category->id],
+            'status' => ['required', 'numeric', 'in:1,2'],
+            'meta_title' => ['required', 'string', 'max:255'],
+            'meta_description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
+            'meta_keywords' => ['required', 'string', 'max:255'],
+            'photo' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
+            'og_image' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
         ];
     }
 }

@@ -63,7 +63,14 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $cms_content = [
+            'module_name' => 'Category',
+            'module_route' => route('category.index'),
+            'sub_module_name' => 'Show',
+            'button_type' => 'list',
+            'button_route' => route('category.index'),
+        ];
+        return view('dashboard.modules.category.show', compact('cms_content', 'category'));
     }
 
     /**
@@ -71,7 +78,15 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $cms_content = [
+            'module_name' => 'Category',
+            'module_route' => route('category.index'),
+            'sub_module_name' => 'Edit',
+            'button_type' => 'list',
+            'button_route' => route('category.index'),
+        ];
+        $categories = (new Category())->get_category_assoc();
+        return view('dashboard.modules.category.edit', compact('cms_content', 'category', 'categories'));
     }
 
     /**
@@ -79,7 +94,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        dd($request->all(), $category);
     }
 
     /**

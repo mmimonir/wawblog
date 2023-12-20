@@ -1,11 +1,11 @@
 @extends('dashboard.layouts.master')
 @section('content')
-{!! Form::open(['route'=>'category.store', 'method'=>'POST', 'files'=>true]) !!}
+{!! Form::model($category,['route'=>['category.update', $category->id], 'method'=>'PUT', 'files'=>true]) !!}
 <div class="row justify-content-center">
     @include('dashboard.modules.category.partials.form')
     <div class="col-md-12 mt-4">
         <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-success">Save</button>
+            <button type="submit" class="btn btn-success">Update</button>
         </div>
     </div>
     {!! Form::close() !!}
