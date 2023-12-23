@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Seo;
 use Throwable;
+use App\Models\Seo;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
@@ -94,7 +96,13 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        dd($request->all(), $category);
+        try {
+            $updated = (new Category())->updateCategory($request, $category);
+            $seo = (new Seo())->updateSeo($request, $category);
+            return redirect()->route('category.index');
+        } catch (Throwable $throwable) {
+            Log::error('CATEGORY_UPDATE_FAILED', ['error' => $throwable->getMessage(), 'log' => $throwable]);
+        }
     }
 
     /**
@@ -102,6 +110,14 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        try {
+            DB::beginTransaction();
+            (new Category())->delete_category($category);
+            DB::commit();
+            return redirect()->route('category.index');
+        } catch (Throwable $throwable) {
+            DB::rollBack();
+            Log::error('CATEGORY_DELETE_FAILED', ['error' => $throwable->getMessage(), 'log' => $throwable]);
+        }
     }
 }

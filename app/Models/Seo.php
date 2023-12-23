@@ -27,22 +27,51 @@ class Seo extends Model
     {
         return $model->seo()->create($this->prepareData($request));
     }
-    private function prepareData(Request $request)
+
+    public function updateSeo(Request $request, Model $model)
+    {
+        return $model->seo()->updateOrCreate(['id' => $model?->seo?->id], $this->prepareData($request, $model));
+    }
+
+    public function delete_seo(Model $model)
+    {
+        if (!empty($model->seo->og_image)) {
+            (new ImageManager)->remove_photo($model->seo->og_image, self::IMAGE_UPLOAD_PATH);
+        }
+        $model->seo()->delete();
+    }
+    private function prepareData(Request $request, Model|null $model = null): array
     {
         $image_file = $request->file('og_image');
-        $image = $image_file->getPathname();
-        return [
+
+        $data =  [
             'meta_title' => $request->input('meta_title'),
             'meta_description' => $request->input('meta_description'),
             'meta_keywords' => $request->input('meta_keywords'),
-            'og_image' => (new ImageManager())
-                ->file($image)
-                ->name(Utility::prepare_name($request->input('meta_title')))
-                ->path(self::IMAGE_UPLOAD_PATH)
-                ->height(self::IMAGE_HEIGHT)
-                ->width(self::IMAGE_WIDTH)
-                ->upload(),
         ];
+        if ($request->hasFile('og_image')) {
+            $image = $image_file->getPathname();
+            if ($model && !empty($model->seo->og_image)) {
+                $data['og_image'] = (new ImageManager())
+                    ->file($image)
+                    ->name(Utility::prepare_name($request->input('meta_title')))
+                    ->path(self::IMAGE_UPLOAD_PATH)
+                    ->height(self::IMAGE_HEIGHT)
+                    ->width(self::IMAGE_WIDTH)
+                    ->remove_old_image($model?->seo?->og_image)
+                    ->upload();
+            } else {
+                $data['og_image'] = (new ImageManager())
+                    ->file($image)
+                    ->name(Utility::prepare_name($request->input('meta_title')))
+                    ->path(self::IMAGE_UPLOAD_PATH)
+                    ->height(self::IMAGE_HEIGHT)
+                    ->width(self::IMAGE_WIDTH)
+                    ->upload();
+            }
+        }
+
+        return $data;
     }
     /**
      *
